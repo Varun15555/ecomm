@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+   
+        <!--Main start-->
+        <div class="row mt-3">
+            {% for x in products %}
+            <div class="col-md-6">
+                <img src="{{x.pimage.url}}" width="100%" class="card-img-top" alt=...>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Product Name</strong>Iphone 15 Pro</p>
+                <p><strong>Price:</strong> {{x.price}}</p>
+                {% if x.cat == 1 %}
+                <p><strong>Category</strong>Mobile</p>
+                {% elif x.cat == 2 %}
+                <p><strong>Category</strong>Shoes</p>
+                {% else %}
+                <p><strong>Category</strong>Clothes</p>
+                {% endif %}
+                <p><strong>Product Description</strong>{{x.pdetails}}</p>
+                <br>
+                <a href="/addtocart/{{x.id}}" class="btn btn-danger">Add To Cart</a>&nbsp;&nbsp;&nbsp;
+                <a href="/viewcart" class="btn btn-danger">View Cart</a>&nbsp;&nbsp;&nbsp;
+                <a href="/" class="btn btn-danger">Shop More</a>
+                {% if success %}
+                <div class="alert alert-success">
+                    {{success}}
+                </div>
+                {% endif %}
+                {% if errmsg %}
+                <div class="alert alert-danger">
+                    {{errmsg}}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+
+        <!--Main end-->
+
+{% endblock 'main' %}

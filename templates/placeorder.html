@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+
+<!--Cart start-->
+<div class="row mt-3">
+    <div class="col-md-9">
+        <h5 class="bg-danger text-white p-2">Customer Details</h5>
+        <p><strong>Name: </strong>{{user.username}}</p>
+        <p><strong>Mobile: </strong>9090909090</p>
+        <p><strong>Email: </strong>{{user.email}}</p>
+        <h5 class="bg-danger text-white p-2">Product Details</h5>
+        {% for x in data %}
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <img src="{{x.pid.pimage.url}}" width="100%" card-img-top alt="...">
+            </div>
+            <div class="col-md-6">
+                <p><strong>Product Name:</strong> {{x.pid.name}}</p>
+                <p><strong>Price:</strong>{{x.pid.price}}</p>
+                <p><strong>Category:</strong>{{x.pid.get_cat_display}}</p>
+                <p><strong>Product Description:</strong>{{x.pid.pdetails}}</p>
+                <!-- <p>
+                    <strong>QTY:</strong>
+                    <a herf="/updateqty/0/{{x.id}}" class="btn btn-danger">-</a>
+                    <input type="number" value="{{x.qty}}" readonly>
+                    <a herf="/updateqty/1/{{x.id}}" class="btn btn-success">+</a>
+                </p> -->
+                <a href="/remove/{{x.id}}" class="btn btn-danger">Remove</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div><!--customer and product detail-->
+    <div class="col-md-3">
+        <h5 class="bg-danger text-white p-2">Total amount</h5>
+        <p><strong>Total({{n}}Item):</strong> Rs{{total}}</p>
+        <hr>
+        <p><strong>Total Amount:</strong> Rs{{total}}</p>
+        <a href="/makepayment" class="btn btn-danger">Make Payment</a>
+
+    </div><!-- total amount section-->
+</div>
+
+
+
+
+
+<!--Cart end-->
+
+{% endblock 'main' %}
